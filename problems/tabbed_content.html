@@ -130,7 +130,6 @@
 		// Set the active tab link and assign the showTab function to each list item
 		for(var i in tabs) {
 			tabs[i].onclick = showTab;
-			console.log(tabs[i]);
 			if (i == 0)
 				tabs[i].className = "active";
 		}
@@ -138,6 +137,7 @@
 		// We could set the 0th content div to active programmatically but that seems excessive
 
 		function showTab() {
+			// First apply the active div content
 			var curr_id = cleanId(this.getAttribute('href'));
 			for(var i in content_divs) {
 				if (content_divs[i].id != curr_id)
@@ -146,8 +146,8 @@
 					content_divs[i].className = "content";
 			}
 
+			// Then style the tabs
 			for(var i in tabs) {
-				// Now we do the same for the tabs
 				if(this.getAttribute('href') != tabs[i].getAttribute('href'))
 					tabs[i].className = "";
 				else
