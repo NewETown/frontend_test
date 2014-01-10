@@ -63,3 +63,35 @@
 	     -o-animation-fill-mode: both;
 	        animation-fill-mode: both;
 }
+
+/* Paragraph fade for tabbed_content.html */
+@-webkit-keyframes fade_in {
+	0% { opacity: 0; }
+	100% { opacity: 1; -webkit-animation-timing-function: ease-in; }
+}
+
+@-moz-keyframes fade_in {
+	0% { opacity: 0; }
+	100% { opacity: 1; -moz-animation-timing-function: ease-in; }
+}
+
+@-o-keyframes fade_in {
+	0% { opacity: 0; }
+	100% { opacity: 1; -o-animation-timing-function: ease-in; }
+}
+
+@keyframes fade_in {
+	0% { opacity: 0; }
+	100% { opacity: 1; animation-timing-function: ease-in; }
+}
+
+.fade_in {
+	-webkit-animation-duration: .5s;
+	   -moz-animation-duration: .5s;
+	     -o-animation-duration: .5s;
+	        animation-duration: .5s;
+	-webkit-animation-name: fade_in;
+	   -moz-animation-name: fade_in;
+	     -o-animation-name: fade_in;
+	        animation-name: fade_in;
+}

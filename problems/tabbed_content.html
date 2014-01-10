@@ -3,6 +3,7 @@
 <head>
 	<title>Frontend Coding Test</title>
 	<link type="text/css" rel="stylesheet" href="../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../css/animations.css">
 	<style type="text/css">
 		.picture {
 			background-color: #F9F9F9;
@@ -139,10 +140,16 @@
 			// First apply the active div content
 			var curr_id = cleanId(this.getAttribute('href'));
 			for(var i in content_divs) {
-				if (content_divs[i].id != curr_id)
+				if (content_divs[i].id != curr_id) {
+					// If this isn't the content we're looking for we make sure the child paragraphs are ready to animate when they load in and we hide the div
+					content_divs[i].children[0].className = "";
 					content_divs[i].className = "content hide";
-				else
+				}
+				else {
+					// Otherwise we show the div and fade the paragraph in
+					content_divs[i].children[0].className = "fade_in";
 					content_divs[i].className = "content";
+				}
 			}
 
 			// Then style the tabs
