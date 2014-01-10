@@ -28,12 +28,12 @@
 
 	<h2>Search</h2>
 	<form>
-		<input type="text" id="search_input" value="llama" />
-		<input type="submit" value="Search" />
+		<input type="text" id="search_input" />
+		<input type="button" value="Search" onclick="findWord()" /> <!-- Sneaky making it a submit input type :) -->
 	</form>
 
 	<h3>Results</h3>
-	Found 0 occurances of the word "llama" in the below text.
+	<div id="results">Found 0 occurances of the word "llama" in the below text.</div>
 
 	<hr/>
 
@@ -53,6 +53,42 @@
 		</p>
 	</div>
 </div>
+
+<script>
+	// Goal: Keep this as simple as possible
+	// First I need to gather up all the words in the div we're looking at
+	var contents = document.getElementById('search_text');
+
+	function findWord() {
+		var cur_text,
+		    word = document.getElementById('search_input').value.trim(),
+		    count = 0;
+
+		var update = document.getElementById('search_input');
+		update.value = word;
+
+		// We want to make sure we don't crash, return early to prevent infinite loops!
+		if(word == "")
+			return;
+
+		for (var i = 0; i < contents.children.length; i++) {
+
+			// This gives us all of the text within each paragraph without any need for regex
+			curr_text = contents.children[i].textContent;
+
+			// Loop over the plain text until we run out
+			while(curr_text.search(word) != -1) {
+				// Increment every time we find the word
+				count++;
+				// Create a new string to search
+				curr_text = curr_text.slice(curr_text.search(word) + word.length);
+			}
+		}
+
+		document.getElementById('results').innerHTML = "Found "+count+" occurances of the word \""+word+"\" in the below text.";
+	}
+	
+</script>
 
 </body>
 </html>

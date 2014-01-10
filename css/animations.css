@@ -1,0 +1,65 @@
+/* First up are the animations for the image_rotator carousel */
+
+/* active_in */
+@-webkit-keyframes active_in {
+	0% { -webkit-transform: translateX(600px); opacity: 0; }
+	100% { -webkit-transform: translateX(0px); opacity: 1; -webkit-animation-timing-function: ease-in; }
+}
+
+@-moz-keyframes active_in {
+	0% { -moz-transform: translateX(600px); opacity: 0; }
+	100% { -moz-transform: translateX(0px); opacity: 1; -moz-animation-timing-function: ease-in; }
+}
+
+@-o-keyframes active_in {
+	0% { -o-transform: translateX(600px); opacity: 0; }
+	100% { -o-transform: translateX(0px); opacity: 1; -o-animation-timing-function: ease-in; }
+}
+
+@keyframes active_in {
+	0% { transform: translateX(600px); opacity: 0; }
+	100% { transform: translateX(0px); opacity: 1; animation-timing-function: ease-in; }
+}
+
+.active_in {
+	-webkit-animation-name: active_in;
+	   -moz-animation-name: active_in;
+	     -o-animation-name: active_in;
+	        animation-name: active_in;
+    -webkit-animation-fill-mode: both;
+	   -moz-animation-fill-mode: both;
+	     -o-animation-fill-mode: both;
+	        animation-fill-mode: both;
+}
+
+/* active_out */
+@-webkit-keyframes active_out {
+	0% { -webkit-transform: translateX(0px); opacity: 1; }
+	100% { -webkit-transform: translateX(-600px); opacity: 0; -webkit-animation-timing-function: ease-out; }
+}
+
+@-moz-keyframes active_out {
+	0% { -moz-transform: translateX(0px); opacity: 1; }
+	100% { -moz-transform: translateX(-600px); opacity: 0; -moz-animation-timing-function: ease-out; }
+}
+
+@-o-keyframes active_out {
+	0% { -o-transform: translateX(0px); opacity: 1; }
+	100% { -o-transform: translateX(-600px); opacity: 0; -o-animation-timing-function: ease-out; }
+}
+
+@keyframes active_out {
+	0% { transform: translateX(0px); opacity: 1; }
+	100% { transform: translateX(-600px); opacity: 0; animation-timing-function: ease-out; }
+}
+
+.active_out {
+	-webkit-animation-name: active_out;
+	   -moz-animation-name: active_out;
+	     -o-animation-name: active_out;
+	        animation-name: active_out;
+	-webkit-animation-fill-mode: both;
+	   -moz-animation-fill-mode: both;
+	     -o-animation-fill-mode: both;
+	        animation-fill-mode: both;
+}

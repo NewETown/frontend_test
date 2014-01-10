@@ -3,57 +3,149 @@
 <head>
 	<title>Frontend Coding Test</title>
 	<link type="text/css" rel="stylesheet" href="../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../css/animations.css" />
 	<style type="text/css">
 		#rotator {
 			width: 450px;
 			height: 300px;
-			border: 1px solid black;
-			background: #aaa;
+			border: 1px solid;
+			background: rgb(19, 19, 19); /*#aaa;*/
 			text-align: center;
+			overflow: hidden;
+		}
+		#katSkins {
+			display: none;
+		}
+		.skin {
+			position: absolute;
+			opacity: 0;
+			-webkit-animation-duration: 1s;
+			   -moz-animation-duration: 1s;
+			     -o-animation-duration: 1s;
+			        animation-duration: 1s;
+		}
+		.skin > h4 {
+			z-index:50;
+			position:relative;
+			top:-20px;
+		}
+		.skin > img {
+			position:relative;
+			top:-58px;
+		}
+		.skin > p {
+			position:relative;
+			bottom:80px;
+			z-index:10;
+			width: 450px;
+			word-wrap: break-all;
 		}
 	</style>
 </head>
 <body>
 	<div id="headwrap">
-	<div class="head">
-		<div class="logo">Riot Games</div>
+		<div class="head">
+			<div class="logo">Riot Games</div>
+		</div>
 	</div>
-</div>
 
-<div id="content">
-	<h1><span class="red">Image</span> Rotator</h1>
+	<div id="content">
+		<h1><span class="red">Image</span> Rotator</h1>
 
-	<p>
-		Using the below images, make a rotator in the box below that shows only one of the Katarina skins every 3 seconds.  The rotator should also display the correct image title and description with each image change.
-	</p>
-	<p>
-		It would be really awesome if the slides animated between one another!
-	</p>
+		<p>
+			Using the below images, make a rotator in the box below that shows only one of the Katarina skins every 3 seconds.  The rotator should also display the correct image title and description with each image change.
+		</p>
+		<p>
+			It would be really awesome if the slides animated between one another!
+		</p>
 
-	<hr />
+		<hr />
 
-	<h4>Katarina</h4>
-	<p>Fruitcake bonbon donut jelly-o brownie biscuit marzipan pie.</p>
-	<img src="../img/kat_1.jpg" /><br/>
+		<!-- <h4>Katarina</h4>
+		<p>Fruitcake bonbon donut jelly-o brownie biscuit marzipan pie.</p>
+		<img src="../img/kat_1.jpg" /><br/>
 
-	<h4>Red Card Katarina</h4>
-	<p>Cheesecake marzipan cupcake biscuit candy canes pudding.</p>
-	<img src="../img/kat_2.jpg" /><br/>
+		<h4>Red Card Katarina</h4>
+		<p>Cheesecake marzipan cupcake biscuit candy canes pudding.</p>
+		<img src="../img/kat_2.jpg" /><br/>
 
-	<h4>Kitty Cat Katarina</h4>
-	<p>Applicake topping halvah lemon drops wypas cotton candy.</p>
-	<img src="../img/kat_3.jpg" /><br/>
+		<h4>Kitty Cat Katarina</h4>
+		<p>Applicake topping halvah lemon drops wypas cotton candy.</p>
+		<img src="../img/kat_3.jpg" /><br/>
 
-	<h4>High Command Katarina</h4>
-	<p>Oat cake macaroon souffle cupcake chupa chups chocolate bar bear claw dragee lemon drops.</p>
-	<img src="../img/kat_4.jpg" /><br/>
+		<h4>High Command Katarina</h4>
+		<p>Oat cake macaroon souffle cupcake chupa chups chocolate bar bear claw dragee lemon drops.</p>
+		<img src="../img/kat_4.jpg" /><br/>
 
-	<hr/>
+		<hr/> -->
 
-	<div id="rotator">
-		Rotator Here
+		<!-- How do I want these to jive?
+				- First off, the images need to go away and be put into a format that I can parse so we just have an awesome rotator in the middle of the screen
+				- Next I need to decide if I want to make an easing rotator or a fade in/out carousel... Both are cool
+				- Finally I need to style the rotator (centered) and the area where the text will go (centered under the image)
+		  -->
+
+		<div id="rotator">
+			<div id="kat1" class="skin">
+				<h4>Katarina</h4>
+				<img src="../img/kat_1.jpg" />
+				<p>Fruitcake bonbon donut jelly-o brownie biscuit marzipan pie.</p>
+			</div>
+			<div id="kat2" class="skin">
+				<h4>Red Card Katarina</h4>
+				<img src="../img/kat_2.jpg" />
+				<p>Cheesecake marzipan cupcake biscuit candy canes pudding.</p>
+			</div>
+			<div id="kat3" class="skin">
+				<h4>Kitty Cat Katarina</h4>
+				<img src="../img/kat_3.jpg" />
+				<p>Applicake topping halvah lemon drops wypas cotton candy.</p>
+			</div>
+			<div id="kat4" class="skin">
+				<h4>High Command Katarina</h4>
+				<img src="../img/kat_4.jpg" />
+				<p>Oat cake macaroon souffle cupcake chupa chups chocolate bar bear claw dragee lemon drops.</p>
+			</div>
+		</div>
+		
 	</div>
-</div>
+
+	<script>
+		// I want the rotator info to always be centered
+		var rotator = document.getElementById('rotator');
+		document.getElementById('rotator').setAttribute('style','margin-left:'+((document.getElementById('content').clientWidth/2)-250)+'px;');
+
+		// Rotate through each picture and apply animations as necessary
+		var idx = 0;
+		function startAnim() {
+			// Find the active element and add the proper classes to get it animate and look awesome
+			rotator.children[idx].classList.remove('active_out');
+			rotator.children[idx].classList.add('active_in');
+
+			// Wait 3 seconds then send out the previous element
+			setTimeout(finishAnim, 3000);
+			
+		}
+
+		function finishAnim() {
+			// Find the element that just animated in and animate it out
+			var prev_idx = idx;
+			rotator.children[idx].classList.remove('active_in');
+			rotator.children[idx].classList.add('active_out');
+			if(idx == 3)
+				idx = 0;
+			else
+				idx++;
+
+		}
+
+		// We need to kick off the animations to sync up with the setInterval and setTimeout
+		startAnim();
+
+		// We call this every 4 seconds to allow for 1 second of animation time and 3 seconds of display time
+		setInterval(startAnim, 4000);
+
+	</script>
 
 </body>
 </html>
